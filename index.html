@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Total Counter</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    #numberInput {
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+
+    #totalCount {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-weight: bold;
+    }
+
+    #restartBtn {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Total Counter</h1>
+  <div class="container">
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="addNumber()">Add</button>
+  </div>
+  <p id="totalCount">Total: 0</p>
+  <button id="restartBtn">Restart</button>
+  <script>
+    let total = 0;
+
+    function addNumber() {
+      const numberInput = document.getElementById("numberInput");
+      const number = parseInt(numberInput.value);
+
+      if (!isNaN(number)) {
+        total += number;
+        document.getElementById("totalCount").textContent = `Total: ${total}`;
+        numberInput.value = ""; // Clear input field after adding
+      } else {
+        alert("Please enter a valid number.");
+      }
+    }
+
+    const restartBtn = document.getElementById("restartBtn");
+    restartBtn.addEventListener("click", function() {
+      total = 0;
+      document.getElementById("totalCount").textContent = "Total: 0";
+      numberInput.value = "";
+    });
+  </script>
+</body>
+</html>
